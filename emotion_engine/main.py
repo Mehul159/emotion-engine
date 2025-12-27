@@ -23,10 +23,27 @@ if __name__ == "__main__":
     ingestion = SignalIngestion()
     features = FeatureNormalizer().normalize(ingestion.ingest(text, metadata, context))
     appraisal = CognitiveAppraisalEngine().appraise(features, context)
-    adjusted_intensity = MLAssist().adjust_intensity(appraisal["emotion"], appraisal["intensity"], [])
-    state = EmotionStateManager().update_state(appraisal["emotion"], adjusted_intensity, 0)
-    modulated = PersonalityModulator().modulate(appraisal["emotion"], adjusted_intensity, {})
+
+    # Prepare input for MLAssist
+    system_state = {
+        "previous_emotions": [appraisal["emotion"]],
+        "emotion_intensity": appraisal["intensity"]
+    }
+    mlassist_input = {
+        "user_text": text,
+        "context": context,
+        "system_state": system_state
+    }
+    mlassist_result = MLAssist().analyze(mlassist_input)
+
+    # Use MLAssist output for further processing if needed
+    state = EmotionStateManager().update_state(
+        appraisal["emotion"],
+        appraisal["intensity"],
+        0
+    )
+    modulated = PersonalityModulator().modulate(appraisal["emotion"], appraisal["intensity"], {})
     policy = PolicyGuardrails().enforce(appraisal["emotion"], modulated, state)
     mapping = EmotionIntentMapper().map(policy["emotion"], policy["intensity"], context)
     FeedbackLoop().record("demo-audit-id", mapping)
-    print(f"Output: {mapping}\nExplanation: {appraisal['explanation']}")
+    print(f"Output: {mapping}\nExplanation: {appraisal['explanation']}\nMLAssist: {mlassist_result}")
