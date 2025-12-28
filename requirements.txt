@@ -1,3 +1,7 @@
 transformers
-tokenizers
 torch
+tokenizers
+scikit-learn
+joblib
+matplotlib
+numpy
