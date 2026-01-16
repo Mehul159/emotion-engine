@@ -51,14 +51,19 @@ def generate_data(n=300000, out_path="data/synthetic_emotions.csv"):
 
 def train_model(data_path="data/synthetic_emotions.csv", model_path="models/emotion_model.pkl"):
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
+    print("Loading data for training...")
     df = pd.read_csv(data_path)
     X = df['text']
     Y = df[EMOTIONS]
+    print(f"Total samples: {len(df)}")
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+    print(f"Training samples: {len(X_train)}, Test samples: {len(X_test)}")
     vectorizer = TfidfVectorizer(max_features=500)
+    print("Fitting TF-IDF vectorizer...")
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)
-    clf = MultiOutputClassifier(LogisticRegression(max_iter=300))
+    print("Training MultiOutputClassifier (LogisticRegression, saga, max_iter=1000)...")
+    clf = MultiOutputClassifier(LogisticRegression(max_iter=1000, solver='saga', n_jobs=-1, verbose=1))
     clf.fit(X_train_vec, Y_train)
     score = clf.score(X_test_vec, Y_test)
     print(f"Test accuracy (mean over labels): {score:.3f}")
@@ -70,5 +75,6 @@ def train_model(data_path="data/synthetic_emotions.csv", model_path="models/emot
 if __name__ == "__main__":
     # To generate a 300k+ sample dataset for advanced use, just run this script.
     # For smaller datasets, call generate_data(n=10000) etc.
-    df = generate_data()
+    # For quick testing, use a smaller n (e.g., n=10000)
+    df = generate_data(n=300000)
     train_model()

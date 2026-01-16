@@ -14,6 +14,8 @@ from utils.logger import setup_logger
 from utils.file_io import save_json
 import pickle
 import numpy as np
+from visualization.confusion_matrix import plot_confusion_matrix, plot_confusion_matrix_img
+from sklearn.metrics import confusion_matrix
 
 def load_model(model_path):
     with open(model_path, 'rb') as f:
@@ -49,6 +51,9 @@ def main():
         sys.exit(1)
     vectorizer, model, emotions = load_model(model_path)
     print("Type text to analyze emotions. Type 'exit' to quit.\n")
+    # For confusion matrix
+    y_true = []
+    y_pred = []
     while True:
         text = input("Input: ").strip()
         if text.lower() in ("exit", "quit"): break
@@ -75,6 +80,18 @@ def main():
         print(f"VAD: ({vad[0]:+.2f}, {vad[1]:+.2f}, {vad[2]:+.2f})")
         print(f"Reason: {reason}")
         print(f"Stability: {state.stability:.2f}\n")
+        # Ask user for true label
+        print(f"Available emotion labels: {', '.join(emotions)}")
+        true_label = input("Enter the TRUE emotion label for this input (or leave blank to skip): ").strip().upper()
+        if true_label in emotions:
+            y_true.append(true_label)
+            y_pred.append(top_emotion)
+        else:
+            print("Skipped adding to confusion matrix (invalid or blank label).\n")
+        # Show confusion matrix if at least 2 samples
+        if len(y_true) > 1:
+            cm = confusion_matrix(y_true, y_pred, labels=emotions)
+            plot_confusion_matrix_img(cm, emotions)
 
 if __name__ == "__main__":
     main()
