@@ -34,7 +34,7 @@ def plot_vad_3d(vad_history, save_path):
     plt.close()
 
 def plot_timeline(emotion_history, save_path):
-    # emotion_history: list of dicts {emotion: intensity}
+    # ...existing code...
     df = pd.DataFrame(emotion_history)
     plt.figure(figsize=(10, 5))
     df.plot(ax=plt.gca())

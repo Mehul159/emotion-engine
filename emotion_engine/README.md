@@ -1,28 +1,144 @@
+
 # Emotion Engine
 
-A production-ready, modular Python engine for continuous, dynamic, and interpretable emotion modeling, inference, and visualization. Runs fully offline in the Windows terminal.
+A production-ready, modular Python engine for continuous, dynamic, and interpretable emotion modeling, inference, reasoning, and visualization. Runs fully offline in the Windows terminal. Supports both classical ML and transformer-based (DistilBERT) emotion inference.
+
+---
 
 ## Features
-- Hybrid VAD + Discrete emotion model
-- Emotion dynamics, blending, decay, memory
-- Offline ML-based text inference
-- Reasoning and explainability
-- File-based visualizations (PNG/JPG)
-- Logging and reproducibility
+- Hybrid VAD (Valence-Arousal-Dominance) + Discrete emotion modeling
+- Emotion dynamics: blending, decay, memory, transitions
+- Classical ML and transformer (DistilBERT) inference
+- Reasoning and explainability (SHAP, feature importance)
+- File-based visualizations (PNG/JPG): confusion matrix, metrics, VAD plots
+- Logging, reproducibility, and offline operation
+- Modular, extensible architecture
+
+---
+
+## Installation
+
+1. Clone the repository:
+	```bash
+	git clone <repo-url>
+	cd emotion_engine
+	```
+2. Install dependencies:
+	```bash
+	pip install -r requirements.txt
+	```
+	- For DistilBERT support: `transformers`, `torch`, `scikit-learn`, `matplotlib`, `seaborn`, `pandas`, `numpy`
+
+---
 
 ## Usage
+
+Run the engine from the terminal:
 ```bash
 python main.py
 ```
 
-## Structure
-- core/: State, memory, config
-- inference/: ML pipeline, explainability
-- dynamics/: Emotion transitions
-- reasoning/: Reasoning engine
-- visualization/: Plots
-- utils/: Logging, file I/O
-- tests/: Unit tests
+You will be prompted to select the inference engine:
+- Option 1: Classical ML (Logistic Regression, SVM, etc.)
+- Option 2: DistilBERT (transformer-based)
+
+Results (metrics and visualizations) are saved to the `output/` folder.
+
+To evaluate and compare both models:
+```bash
+python emotion_engine/evaluate_all.py
+```
+
+---
+
+## Project Structure
+
+- `core/` — State, memory, config management
+- `inference/` — ML pipeline, DistilBERT, explainability
+- `dynamics/` — Emotion transitions and blending
+- `reasoning/` — Reasoning engine, explainability
+- `visualization/` — Plots: confusion matrix, VAD, metrics
+- `utils/` — Logging, file I/O
+- `tests/` — Unit tests
+
+---
+
+## Dataset Size Requirements
+
+| Level                            | Dataset Size (Text Samples) | What You Can Achieve              |
+| -------------------------------- | --------------------------- | --------------------------------- |
+| Minimum (Prototype)              | 5k – 10k                    | Works, demo-ready, basic accuracy |
+| Good (Portfolio / Interview)     | 20k – 40k                   | Stable, reliable, explainable     |
+| Strong (Research / Product)      | 80k – 150k                  | Robust, generalizable             |
+| Very Advanced (Near-SOTA)        | 300k+                       | Industry-grade (optional)         |
+
+See below for practical guidance on dataset selection and augmentation.
+
+---
+
+## Classical ML and DistilBERT Support
+
+This project supports emotion inference using both classical ML and Hugging Face transformer models (DistilBERT).
+
+### Classical ML
+- Uses TF-IDF vectorization and models like Logistic Regression, SVM.
+- Fast, interpretable, works well with moderate data.
+- See `inference/text_inference.py` for implementation.
+
+### DistilBERT (Transformers)
+- Uses Hugging Face `transformers` and `torch` for deep learning-based emotion classification.
+- Supports fine-tuning on custom emotion datasets.
+- See `run_transformers_demo.py` for usage example.
+- To fine-tune: see comments in `inference/model_training.py`.
+
+---
+
+## Evaluation and Visualization
+
+After running the engine or evaluation script, you will get:
+- Precision, recall, F1-score, accuracy for each model
+- Confusion matrix (PNG/JPG)
+- Bar charts comparing metrics for classical ML and DistilBERT
+- VAD plots and dataset distribution visualizations
+
+All outputs are saved in the `output/` folder for review.
+
+---
+
+## Extensibility and Offline Operation
+
+- Fully modular: add new models, reasoning engines, or visualization types easily
+- Runs offline: no internet required after initial setup
+- Supports custom datasets and emotion taxonomies
+- Easy to integrate with other Python projects
+
+---
+
+## Troubleshooting & FAQ
+
+**Q: DistilBERT metrics are low or show warnings?**
+A: Ensure your emotion labels match the pre-trained model’s expected classes, or fine-tune DistilBERT on your custom dataset.
+
+**Q: How do I add new emotions or change the taxonomy?**
+A: Update the label set in your dataset and retrain both models. For VAD mapping, update the config in `core/`.
+
+**Q: Where are the results saved?**
+A: All metrics and visualizations are saved in the `output/` folder.
+
+**Q: Can I run everything offline?**
+A: Yes, after installing dependencies, all inference and visualization is fully offline.
+
+---
+
+## License & Credits
+
+MIT License. Built using Python, scikit-learn, Hugging Face Transformers, matplotlib, seaborn, pandas, numpy.
+
+---
+
+## Contact
+
+For questions, suggestions, or contributions, open an issue or pull request.
 
 ## Dataset Size Requirements for Emotion Engine
 

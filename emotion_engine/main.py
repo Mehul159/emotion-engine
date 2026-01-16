@@ -78,6 +78,7 @@ def main():
             y_true.append(true_label)
             y_pred.append(top_emotion)
         else:
+            # ...existing code...
             print("Skipped adding to confusion matrix (invalid or blank label).\n")
         if len(y_true) > 1:
             cm = confusion_matrix(y_true, y_pred, labels=emotions)

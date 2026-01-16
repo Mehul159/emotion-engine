@@ -26,7 +26,7 @@ class TextEmotionInference:
         reason = f"Top emotion: {self.emotions[np.argmax(scores)]}"
         return emotion_scores, vad, confidence, reason
 
-# --- DistilBERT-based inference ---
+    # ...existing code...
 
 class DistilBERTEmotionInference:
     def __init__(self, model_name="bhadresh-savani/distilbert-base-uncased-emotion"):

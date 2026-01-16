@@ -33,7 +33,6 @@ def get_classic_metrics():
     preds = clf.predict(X_test_vec)
     report = classification_report(Y_test, preds, target_names=emotions, output_dict=True)
     print(classification_report(Y_test, preds, target_names=emotions))
-    # Only keep per-class metrics
     metrics = {label: vals for label, vals in report.items() if label in emotions}
     return metrics
 

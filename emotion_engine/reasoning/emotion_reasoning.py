@@ -18,7 +18,7 @@ def reason_emotion(text, emotions, vad):
         return "No emotions detected."
     top_emotion = max(emotions, key=emotions.get)
     intensity = emotions[top_emotion]
-    # Trigger detection (simple keyword)
+    # ...existing code...
     trigger = None
     keywords = {
         'HAPPY': ['happy', 'joy', 'pleased', 'delighted'],
@@ -33,18 +33,18 @@ def reason_emotion(text, emotions, vad):
         if any(w in text.lower() for w in words):
             trigger = emo
             break
-    # Cause explanation
+    # ...existing code...
     cause = f"Detected emotion '{top_emotion}' with intensity {intensity:.2f}."
     if trigger:
         cause += f" Triggered by keywords related to '{trigger}'."
-    # Duration estimation (simple rule)
+    # ...existing code...
     if intensity > 0.8:
         duration = "likely to persist for a while"
     elif intensity > 0.5:
         duration = "may fade soon"
     else:
         duration = "likely to be brief"
-    # Behavioral implication
+    # ...existing code...
     if vad[0] < -0.3:
         behavior = "May withdraw or seek comfort."
     elif vad[0] > 0.3:

@@ -16,7 +16,7 @@ def plot_distribution(data, save_path):
         labels, counts = zip(*data.items())
         df = pd.DataFrame({'label': labels, 'count': counts})
     elif isinstance(data, pd.DataFrame):
-        # Assume one-hot columns for each label
+        # ...existing code...
         label_cols = [col for col in data.columns if col != 'text']
         counts = data[label_cols].sum().sort_values(ascending=False)
         df = pd.DataFrame({'label': counts.index, 'count': counts.values})

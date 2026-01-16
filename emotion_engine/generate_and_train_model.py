@@ -73,8 +73,5 @@ def train_model(data_path="data/synthetic_emotions.csv", model_path="models/emot
     print(f"Model saved to {model_path}")
 
 if __name__ == "__main__":
-    # To generate a 300k+ sample dataset for advanced use, just run this script.
-    # For smaller datasets, call generate_data(n=10000) etc.
-    # For quick testing, use a smaller n (e.g., n=10000)
     df = generate_data(n=300000)
     train_model()

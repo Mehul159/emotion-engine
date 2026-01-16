@@ -9,7 +9,7 @@ def plot_confusion_matrix(cm, labels):
         cm (array-like): Confusion matrix (2D array)
         labels (list): List of class labels
     """
-    # Print header
+    # ...existing code...
     header = "{:>10} ".format("") + " ".join([f"{l:>8}" for l in labels])
     print(header)
     for i, row in enumerate(cm):
@@ -39,7 +39,7 @@ def plot_confusion_matrix_img(cm, labels):
 
 if __name__ == "__main__":
     import numpy as np
-    # Demo: 5-class confusion matrix
+    # ...existing code...
     labels = ['HAPPY', 'SAD', 'ANGRY', 'FEAR', 'SURPRISE']
     cm = np.array([
         [50, 2, 1, 0, 0],
