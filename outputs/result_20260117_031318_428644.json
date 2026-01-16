@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-17T03:13:18.428644",
+  "text": "i might get promotion today",
+  "emotions": {
+    "sadness": 0.003310058731585741,
+    "joy": 0.9826971888542175,
+    "love": 0.001258120988495648,
+    "anger": 0.010339299216866493,
+    "fear": 0.0016994428588077426,
+    "surprise": 0.0006958686863072217
+  },
+  "vad": [
+    0.8,
+    0.6,
+    0.7
+  ],
+  "confidence": 0.9826971888542175,
+  "reason": "DistilBERT: Top emotion joy with confidence 0.98",
+  "stability": 0.39585964157801823
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-17T03:11:10.568010",
+  "text": "im feeling a bit of anxious",
+  "emotions": {
+    "sadness": 0.0007273933733813465,
+    "joy": 0.0002759275084827095,
+    "love": 0.0001270584762096405,
+    "anger": 0.0006138760363683105,
+    "fear": 0.9976511597633362,
+    "surprise": 0.0006046185153536499
+  },
+  "vad": [
+    -0.8,
+    0.9,
+    -0.7
+  ],
+  "confidence": 0.9976511597633362,
+  "reason": "DistilBERT: Top emotion fear with confidence 1.00",
+  "stability": -0.05262627549738608
+}

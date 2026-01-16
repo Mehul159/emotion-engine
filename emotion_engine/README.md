@@ -76,3 +76,13 @@ The table below summarizes recommended dataset sizes for different maturity leve
 
 **Summary:**  
 You do not need massive datasets to build a practical, production-ready emotion engine. Start with 5k–10k samples for prototypes, 20k–40k for reliable models, and 80k+ for robust research or product use. Hybrid approaches, VAD modeling, and data augmentation further reduce data requirements and improve system stability.
+
+## DistilBERT and Hugging Face Transformers Support
+
+This project supports emotion inference using DistilBERT and other Hugging Face models. To use DistilBERT-based emotion classification:
+
+- Install requirements: `pip install -r requirements.txt`
+- Use the `DistilBERTEmotionInference` class in `inference/text_inference.py` for transformer-based emotion inference.
+- See `run_transformers_demo.py` for a usage example.
+
+You can fine-tune DistilBERT for your own emotion dataset using Hugging Face Trainer (see comments in `model_training.py`).

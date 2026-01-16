@@ -6,3 +6,5 @@ plotly
 pandas
 shap
 pyyaml
+transformers
+torch

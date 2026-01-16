@@ -43,3 +43,15 @@ def evaluate_model(model_path, test_data_path):
     preds = model.predict(X_vec)
     print(classification_report(Y, preds, target_names=emotions))
     print(f"Mean accuracy: {accuracy_score(Y, preds):.3f}")
+
+# For DistilBERT fine-tuning, see Hugging Face documentation:
+# https://huggingface.co/docs/transformers/tasks/sequence_classification
+# You can use the Trainer API or pipeline for custom fine-tuning.
+
+def train_distilbert_emotion(data_path, model_save_path, model_name="distilbert-base-uncased"):
+    """
+    Stub: Fine-tune DistilBERT for emotion classification using Hugging Face Trainer.
+    Implement as needed for your dataset.
+    """
+    print("[INFO] For DistilBERT fine-tuning, use Hugging Face Trainer or AutoModelForSequenceClassification.")
+    print("Refer to: https://huggingface.co/docs/transformers/training")
