@@ -1,0 +1,7 @@
+# Emotion Engine Configuration
+vad_base: [0.0, 0.0, 0.0]
+decay_rate: 0.05
+inertia: 0.85
+log_dir: logs/
+output_dir: outputs/
+model_dir: models/
